@@ -1,0 +1,16 @@
+{
+  "_comment": "ONE-TIME WIRING. Merge the \"hooks\" block below into your project .claude/settings.json (or settings.local.json). This registers the enforcement Stop hook. The hook stays INERT until you create .claude/output-style.enforce.json (copy the .example file). Remove this block to unwire entirely. Stop hooks take no matcher.",
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PROJECT_DIR}/.claude/hooks/enforce-output-style.py\"",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
+  }
+}

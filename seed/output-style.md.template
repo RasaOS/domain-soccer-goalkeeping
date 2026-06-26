@@ -1,0 +1,35 @@
+---
+name: RasaOS Default
+description: Project response-format contract — lead with the answer, stay structured, keep the project's blunt voice.
+keep-coding-instructions: true
+---
+
+# Response format — STARTER (replace with your own)
+
+> This file is the single source of truth for how Claude formats every response
+> in this project. It was seeded once by the domain Element's `bin/init`; the
+> project owns it now — edit freely.
+>
+> Two companions (see `.claude/hooks/enforce-output-style.py` header):
+> - `CLAUDE.md` points here, keeping the rule in context even when this style
+>   isn't the active one.
+> - `.claude/output-style.enforce.json` can hard-enforce the *checkable* parts
+>   of this format, per session.
+
+## Always
+
+- **Lead with the answer.** The first line resolves the question; detail follows.
+- **Stay structured.** Any response longer than a few sentences uses Markdown
+  headings or bold section labels so it is scannable. *(This is the part the Stop
+  hook checks by default.)*
+- **Be direct.** No filler, no "I'd be happy to…", no hedging when something is
+  clear. Say what's true; calibrate confidence explicitly when it isn't.
+- **No emoji** unless explicitly asked.
+
+## Checkable subset
+
+A Stop hook can only verify *structurally checkable* rules, not prose style. The
+default config (`.claude/output-style.enforce.example.json`) enforces exactly
+one: responses past a length threshold must contain at least one Markdown heading
+or bold label. Add or change checks in `.claude/output-style.enforce.json`; keep
+the full, human-judged format here.

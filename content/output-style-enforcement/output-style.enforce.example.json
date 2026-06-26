@@ -1,0 +1,11 @@
+{
+  "_comment": "TOGGLE FILE for the hard-enforcement Stop hook. Turn enforcement ON by copying this file to .claude/output-style.enforce.json; turn it OFF by deleting that copy. Edit the checks below to match your output style. The hook can only verify structurally CHECKABLE rules (regex markers, length) — keep the full human-readable format in .claude/output-styles/rasa-default.md. See content/output-style-enforcement/README.md.",
+  "enabled": true,
+  "min_chars": 400,
+  "must_contain": [
+    "(?m)^#{1,6}\\s|^\\*\\*[^*]+\\*\\*"
+  ],
+  "must_not_contain": [],
+  "skip_if_matches": [],
+  "message": "Your last response must follow .claude/output-styles/rasa-default.md: any response longer than a few sentences needs at least one Markdown heading or bold section label so its structure is scannable. Add structure and resend."
+}

@@ -1,0 +1,109 @@
+{
+  "$schema": "https://rasa-os.github.io/schema/rasa.schema.v1.json",
+  "contract_version": "1.3.0",
+  "name": "rasa.domain.soccer.goalkeeping",
+  "version": "0.1.0",
+  "kind": "domain",
+  "aliases": [
+    "domain-soccer-goalkeeping",
+    "rasa.domain.soccer-goalkeeping"
+  ],
+  "description": "RasaOS Domain \u00b7 Soccer Goalkeeping. Coaching foundation for soccer goalkeeping \u2014 technique, shot-stopping, distribution, positioning, training drills, match preparation, and keeper development across age/level.",
+  "source": {
+    "repo": "https://github.com/RasaOS/domain-soccer-goalkeeping",
+    "branch": "main"
+  },
+  "tier": "Pro",
+  "capabilities": [],
+  "permissions": [
+    "fs:write",
+    "shell:exec"
+  ],
+  "requires": {},
+  "rasa": {
+    "role": "domain-element",
+    "shape_pattern": "agnostic",
+    "note": "Forked from domain-core (template baseline). Fill in shape_pattern + populate content/. For domain kind: review canon Spec \u00a76 kind-specific shape variation for required structure.",
+    "naming": "FIRST sub-namespaced domain (canon precedent, 2026-06-25). Canonical name rasa.domain.soccer.goalkeeping uses a dotted soccer.<specialty> hierarchy \u2014 valid because the schema ElementName first-party identifier is '.+'. Folder + repo use the dashed form (domain-soccer-goalkeeping); folder\u2194name is intentionally NOT reconstructable here, so tooling must read the dotted name from rasa.json#name (refresh-registry does). Alias rasa.domain.soccer-goalkeeping retained for flat-form discoverability. Future siblings under this hierarchy: rasa.domain.soccer.<striking|tactics|fitness|...>."
+  },
+  "element": {
+    "description": "Files mirrored into the install target per canon ELEMENT_CONTRACT.md \u00a77. Shape scaffold (SHAPE.md, skills/, rules/, agents/) ships opt-in \u2014 registered for check-manifest coverage but not installed automatically; forks change policy as they populate content/. The v1.1.0 output-style-enforcement files ship file-replace (Element-owned, installed but inert until the consumer opts in) plus opt-in docs.",
+    "files": [
+      {
+        "from": "content/SHAPE.md",
+        "to": "content/SHAPE.md",
+        "policy": "opt-in",
+        "note": "Fork-time guide explaining toolkit vs structural shape patterns. Not installed into consumer projects. Forks should delete this from their copy and replace with content/README.md describing what's actually shipped."
+      },
+      {
+        "from": "content/skills/",
+        "to": ".claude/skills/",
+        "policy": "opt-in",
+        "note": "Toolkit-shape scaffold subdir. Forks that adopt the toolkit pattern populate this and change policy to directory-mirror. Structural-shape forks delete this entry + the directory."
+      },
+      {
+        "from": "content/rules/",
+        "to": ".claude/",
+        "policy": "opt-in",
+        "note": "Toolkit-shape scaffold subdir. Forks adopting toolkit add rule .md files here + change policy. Note canonical install target is .claude/ root (rules install flat per domain-code precedent)."
+      },
+      {
+        "from": "content/agents/",
+        "to": ".claude/agents/",
+        "policy": "opt-in",
+        "note": "Toolkit-shape scaffold subdir for Claude subagent definitions. Forks adopting toolkit add agent .md files here + change policy to directory-mirror."
+      },
+      {
+        "from": "content/output-style-enforcement/README.md",
+        "to": "content/output-style-enforcement/README.md",
+        "policy": "opt-in",
+        "note": "How-to for the 3-layer response-format enforcement pattern (output style + CLAUDE.md pointer + opt-in Stop hook). Fork-time doc; not installed into consumer projects."
+      },
+      {
+        "from": "content/output-style-enforcement/enforce-output-style.py",
+        "to": ".claude/hooks/enforce-output-style.py",
+        "policy": "file-replace",
+        "note": "Stop hook \u2014 the 'hard' layer. Installed but INERT until the consumer wires it via settings (see settings.snippet.json) AND creates .claude/output-style.enforce.json. Element-owned generic code; refreshed on Element upgrade."
+      },
+      {
+        "from": "content/output-style-enforcement/output-style.enforce.example.json",
+        "to": ".claude/output-style.enforce.example.json",
+        "policy": "file-replace",
+        "note": "Example enforcement config + per-session toggle template. Copy to .claude/output-style.enforce.json to turn the Stop hook ON; delete that copy to turn it OFF."
+      },
+      {
+        "from": "content/output-style-enforcement/settings.snippet.json",
+        "to": "content/output-style-enforcement/settings.snippet.json",
+        "policy": "opt-in",
+        "note": "settings.json Stop-hook registration snippet. Doc only; the consumer merges it once by hand. Not installed automatically."
+      }
+    ]
+  },
+  "seed": {
+    "description": "One-time files copied at install only. Per canon ELEMENT_CONTRACT.md \u00a77.",
+    "files": [
+      {
+        "from": "seed/CLAUDE.md.template",
+        "to": "CLAUDE.md",
+        "policy": "skip-if-exists",
+        "note": "Per-project Claude session contract. Lives in install-target root; project-owned forever. Placeholder-free (Element identity lives in .claude/rasa.lock.json \u2014 current install-policy taxonomy doesn't substitute placeholders in skip-if-exists files; flagged in v0.1.0 AUDIT)."
+      },
+      {
+        "from": "seed/rasa.lock.json.template",
+        "to": ".claude/rasa.lock.json",
+        "policy": "init-only-with-sha",
+        "note": "Stamped with the Element HEAD commit SHA at init time. Lockfile shape per canon Spec \u00a76 (Connection Contract). Substitutes {{ELEMENT_NAME}}, {{ELEMENT_KIND}}, {{ELEMENT_VERSION}}, {{ELEMENT_REPO}}, {{ELEMENT_BRANCH}}, {{ELEMENT_SHA}}, {{TODAY}} placeholders via bin/init's init-only-with-sha handler."
+      },
+      {
+        "from": "seed/output-style.md.template",
+        "to": ".claude/output-styles/rasa-default.md",
+        "policy": "skip-if-exists",
+        "note": "Starter response-format output style \u2014 the 'soft' layer (v1.1.0). Copied once; project owns it. Select with /output-style rasa-default or outputStyle in settings. Placeholder-free per the documented skip-if-exists policy gap."
+      }
+    ]
+  },
+  "scaffold": {
+    "description": "Empty directories created at init. v1.0.0 ships none \u2014 forks add as needed.",
+    "directories": []
+  }
+}
