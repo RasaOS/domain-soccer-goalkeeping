@@ -8,3 +8,6 @@
 
 # Temp install artifacts
 .claude/rasa.lock.json
+
+# Third-party source PDFs — held locally, NOT redistributed in the public repo
+content/reference/sources/*.pdf
