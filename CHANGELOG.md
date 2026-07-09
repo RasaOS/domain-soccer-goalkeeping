@@ -4,6 +4,12 @@ Reverse-chronological. Each entry is a version bump.
 
 ---
 
+## 0.2.1 — 2026-07-09
+
+### Added generic `/sync` + `/promote` + `/kit`-aware `bin/init` (canon SA-024)
+
+- `bin/init` now clones the Element source into `<project>/kit/<element>/`; `/sync` smart-pulls upstream, `/promote` smart-pushes local edits back upstream (both directory-mirror → installed into consumers).
+
 ## 0.2.0 — 2026-06-25 — Domain core authored from three curricula
 
 The foundational goalkeeping knowledge core — the "foundational
