@@ -1,5 +1,8 @@
 # CLAUDE.md — `rasa.domain.core`
 
+> **Who you are (SA-025).** `rasa.domain.soccer.goalkeeping` — the RasaOS domain for soccer goalkeeping. Substrate: **RasaOS**; role: **domain**. On install `bin/init` renders this into `.claude/rasa-identity.md`; `/whoami` composes the full identity with the project's deployment layer.
+
+
 Per-repo working contract for Claude sessions opened inside this
 folder. Extends `~/.claude/CLAUDE.md` and the workspace
 `~/rAI/rasa-os/CLAUDE.md` (which is the `rasa.tenant.rasaos` tenant's
